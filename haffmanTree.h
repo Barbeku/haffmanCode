@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#define MAX_TREE_SIZE 100
+#define MAX_TREE_SIZE 10000
 #define NIL 0
 
 enum { LEAF, NO_LEAF };
@@ -114,7 +114,6 @@ void getCodesForSymbols(int root, char path, int depth, int direction){
 
   if(tree[root].isLeaf == LEAF){
     codes[tree[root].symbol] = showInBinary(path, depth);
-    printf("%c: %s, %d\n", tree[root].symbol, showInBinary(path, depth), path);
     return;
   }
   depth++;
@@ -134,4 +133,10 @@ char* showInBinary(char x, int depth){
       string[i] = '0';
 
   return string;
+}
+
+void showCodes(){
+  for(int i = 0; i < ASCII_SIZE; i++)
+    if(frequency[i] != 0)
+      printf("%c: %s\n", i, codes[i]);
 }
