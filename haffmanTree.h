@@ -26,8 +26,8 @@ void addFrequencyToTree();
 void organiseTree();
 int* findTwoSmallest();
 void showNodes();
-void getCodesForSymbols(int, char, int, int);
-char* showInBinary(char, int);
+void getCodesForSymbols(int, int, int, int);
+char* showInBinary(int, int);
 
 
 void initTree(){
@@ -97,18 +97,18 @@ int* findTwoSmallest(){
 void showNodes(){
   for(int i = 1; i < posTree; i++){
     if(tree[i].parent != NIL)
-      printf("---------- ");
+      printf("---- ");
 
-      printf("%2d - isLeaf: %7s, number: %3d, symbol: %c, parent: %2d, left: %2d, right: %2d", i, tree[i].isLeaf == LEAF ? "LEAF" : "NO_LEAF", tree[i].number, tree[i].isLeaf == LEAF ? tree[i].symbol : 'N', tree[i].parent, tree[i].left, tree[i].right);
+      printf("%3d - isLeaf: %7s, number: %3d, symbol: %c, parent: %3d, left: %3d, right: %3d", i, tree[i].isLeaf == LEAF ? "LEAF" : "NO_LEAF", tree[i].number, tree[i].isLeaf == LEAF ? tree[i].symbol : 'N', tree[i].parent, tree[i].left, tree[i].right);
 
     if(tree[i].parent != NIL)
-      printf(" ----------");
+      printf(" ----");
 
     printf("\n");
   }
 }
 
-void getCodesForSymbols(int root, char path, int depth, int direction){
+void getCodesForSymbols(int root, int path, int depth, int direction){
   if(direction != -1)
     path = path | (direction << depth);
 
@@ -122,7 +122,7 @@ void getCodesForSymbols(int root, char path, int depth, int direction){
   getCodesForSymbols(tree[root].right, path, depth, RIGHT);
 }
 
-char* showInBinary(char x, int depth){
+char* showInBinary(int x, int depth){
   char *string = malloc(depth+2);
   string[depth+1] = '\0';
 
